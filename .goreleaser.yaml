@@ -1,0 +1,143 @@
+builds:
+  - main: ./cmd/spectest-interp
+    id: spectest-interp
+    binary: spectest-interp
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-decompile
+    id: wasm-decompile
+    binary: wasm-decompile
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-interp
+    id: wasm-interp
+    binary: wasm-interp
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-objdump
+    id: wasm-objdump
+    binary: wasm-objdump
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-stats
+    id: wasm-stats
+    binary: wasm-stats
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-strip
+    id: wasm-strip
+    binary: wasm-strip
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm-validate
+    id: wasm-validate
+    binary: wasm-validate
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm2c
+    id: wasm2c
+    binary: wasm2c
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wasm2wat
+    id: wasm2wat
+    binary: wasm2wat
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wast2json
+    id: wast2json
+    binary: wast2json
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wat-desugar
+    id: wat-desugar
+    binary: wat-desugar
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+  - main: ./cmd/wat2wasm
+    id: wat2wasm
+    binary: wat2wasm
+    env:
+      - CGO_ENABLED=0
+    targets:
+      - linux_amd64
+      - linux_arm64
+      - darwin_amd64
+      - darwin_arm64
+      - windows_amd64
+archives:
+  - format_overrides:
+      - goos: windows
+        format: zip
+release:
+  mode: append
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
