@@ -1,6 +1,6 @@
 # go-wabt
 
-go-wabt is a distribution of wabt[1], that can be built with Go. It does not actually reimplement any
+go-wabt is a distribution of [wabt][1], that can be built with Go. It does not actually reimplement any
 functionality of wabt in Go, instead the original WebAssembly binaries, and 
 executing with the pure Go Wasm runtime [wazero][2]. This means that `go install` or `go run`
 can be used to execute it, with no need to rely on external package managers such as Homebrew,
