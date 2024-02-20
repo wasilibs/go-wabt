@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/tetratelabs/wazero"
@@ -16,7 +17,16 @@ import (
 func Run(name string, wasm []byte) {
 	ctx := context.Background()
 
-	rt := wazero.NewRuntime(ctx)
+	rtCfg := wazero.NewRuntimeConfig()
+	uc, err := os.UserCacheDir()
+	if err == nil {
+		cache, err := wazero.NewCompilationCacheWithDir(filepath.Join(uc, "com.github.wasilibs"))
+		if err == nil {
+			rtCfg = rtCfg.WithCompilationCache(cache)
+		}
+	}
+
+	rt := wazero.NewRuntimeWithConfig(ctx, rtCfg)
 
 	wasi_snapshot_preview1.MustInstantiate(ctx, rt)
 
@@ -40,7 +50,7 @@ func Run(name string, wasm []byte) {
 		cfg = cfg.WithEnv(k, v)
 	}
 
-	_, err := rt.InstantiateWithConfig(ctx, wasm, cfg)
+	_, err = rt.InstantiateWithConfig(ctx, wasm, cfg)
 	if err != nil {
 		if sErr, ok := err.(*sys.ExitError); ok {
 			os.Exit(int(sErr.ExitCode()))
