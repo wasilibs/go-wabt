@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/tetratelabs/wazero"
+	"github.com/tetratelabs/wazero/experimental/opt"
 	"github.com/tetratelabs/wazero/experimental/sysfs"
 	"github.com/tetratelabs/wazero/imports/wasi_snapshot_preview1"
 	"github.com/tetratelabs/wazero/sys"
@@ -17,7 +18,7 @@ import (
 func Run(name string, wasm []byte) {
 	ctx := context.Background()
 
-	rtCfg := wazero.NewRuntimeConfig()
+	rtCfg := opt.NewRuntimeConfigOptimizingCompiler()
 	uc, err := os.UserCacheDir()
 	if err == nil {
 		cache, err := wazero.NewCompilationCacheWithDir(filepath.Join(uc, "com.github.wasilibs"))
